@@ -10,7 +10,7 @@ namespace SearchingSortingPaging.DAL
 {
     public class BookContext : DbContext
     {
-        public BookContext() : base("BooksDb")
+        public BookContext() : base("BooksDB")
         {
             Database.SetInitializer(new BookInitializer());
         }
