@@ -15,7 +15,9 @@
             @using (Html.BeginForm("Index", "Book", FormMethod.Get))
             {
                 <p>
-                    Search Option: @Html.RadioButton("option", "Name") Name @Html.RadioButton("option", "Author") Author @Html.RadioButton("option", "Publisher") Publisher @Html.TextBox("SearchString")
+                    Category: @Html.DropDownList("bookCategory", "All")
+                    Search Option: @Html.RadioButton("option", "Name") Name @Html.RadioButton("option", "Author") Author @Html.RadioButton("option", "Publisher") Publisher 
+                    @Html.TextBox("SearchString")
                     <input type="submit" name="submit" value="Search" class="btn btn-default" />
                 </p>
             }

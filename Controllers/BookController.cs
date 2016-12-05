@@ -11,24 +11,57 @@ namespace SearchingSortingPaging.Controllers
     {
         private BookContext db = new BookContext();
         // GET: Book
-        public ActionResult Index(string option, string searchString)
+        public ActionResult Index(string option, string searchString, string bookCategory)
         {
-            if (option == "Name")
+            var categoryList = new List<string>();
+            var categoryQuery = from c in db.Categories orderby c.Name select c.Name;
+            var books = from b in db.Books select b;
+
+            categoryList.AddRange(categoryQuery.Distinct());
+            ViewBag.bookCategory = new SelectList(categoryList);
+
+            if (!String.IsNullOrEmpty(searchString))
             {
-                return View(db.Books.Where(b => b.Name.Contains(searchString) || searchString == null).ToList());
+                if (!String.IsNullOrEmpty(bookCategory))
+                {
+                    if (option == "Name")
+                    {
+                        books = books.Where(b => b.Name.Contains(searchString) && b.Category.Name == bookCategory);
+                    }
+                    else if (option == "Author")
+                    {
+                        books = books.Where(b => b.Author.Contains(searchString) && b.Category.Name == bookCategory);
+                    }
+                    else if (option == "Publisher")
+                    {
+                        books = books.Where(b => b.Publisher.Contains(searchString) && b.Category.Name == bookCategory);
+                    }
+                    else
+                    {
+                        books = books.Where(b => b.Name.Contains(searchString) && b.Category.Name == bookCategory);
+                    }
+                }
+                else
+                {
+                    if (option == "Name")
+                    {
+                        books = books.Where(b => b.Name.Contains(searchString));
+                    }
+                    else if (option == "Author")
+                    {
+                        books = books.Where(b => b.Author.Contains(searchString));
+                    }
+                    else if (option == "Publisher")
+                    {
+                        books = books.Where(b => b.Publisher.Contains(searchString));
+                    }
+                    else
+                    {
+                        books = books.Where(b => b.Name.Contains(searchString));
+                    }
+                }
             }
-            else if (option == "Author")
-            {
-                return View(db.Books.Where(b => b.Author.Contains(searchString) || searchString == null).ToList());
-            }
-            else if (option == "Publisher")
-            {
-                return View(db.Books.Where(b => b.Publisher.Contains(searchString) || searchString == null).ToList());
-            }
-            else
-            {
-                return View(db.Books.Where(b => b.Name.StartsWith(searchString) || searchString == null).ToList());
-            }
+            return View(books.ToList());
         }
     }
 }
