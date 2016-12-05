@@ -11,8 +11,8 @@
 </p>
 <table class="table">
     <tr>
-        <th colspan="3">
-            @using (Html.BeginForm("Index", "Category", FormMethod.Get))
+        <th colspan="2">
+            @using (Html.BeginForm("Index", "Category", FormMethod.Get))    
             {
                 <p>
                     Search: @Html.TextBox("SearchString")
@@ -31,7 +31,7 @@
         if (Model.Count() == 0)
         {
             <tr>
-                <th colspan="3">
+                <th colspan="2">
                     Category no found..
                 </th>
             </tr>
