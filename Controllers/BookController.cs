@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace SearchingSortingPaging.Controllers
 {
@@ -11,7 +12,7 @@ namespace SearchingSortingPaging.Controllers
     {
         private BookContext db = new BookContext();
         // GET: Book
-        public ActionResult Index(string option, string searchString, string bookCategory)
+        public ActionResult Index(string option, string searchString, string bookCategory, int? pageNumber)
         {
             var categoryList = new List<string>();
             var categoryQuery = from c in db.Categories orderby c.Name select c.Name;
@@ -61,7 +62,7 @@ namespace SearchingSortingPaging.Controllers
                     }
                 }
             }
-            return View(books.ToList());
+            return View(books.ToList().ToPagedList(pageNumber ?? 1, 3));
         }
     }
 }

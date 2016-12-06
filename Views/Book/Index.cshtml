@@ -1,4 +1,7 @@
-﻿@model IEnumerable<SearchingSortingPaging.Models.Book>
+﻿@*@model IEnumerable<SearchingSortingPaging.Models.Book> *@
+@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<SearchingSortingPaging.Models.Book>
 
 @{
     ViewBag.Title = "Index";
@@ -26,28 +29,28 @@
 
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Category.Name)
+            @Html.DisplayNameFor(model => model.First().Category.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.First().Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ISBN)
+            @Html.DisplayNameFor(model => model.First().ISBN)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Author)
+            @Html.DisplayNameFor(model => model.First().Author)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Publisher)
+            @Html.DisplayNameFor(model => model.First().Publisher)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PublicationDate)
+            @Html.DisplayNameFor(model => model.First().PublicationDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Price)
+            @Html.DisplayNameFor(model => model.First().Price)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ReducedPrice)
+            @Html.DisplayNameFor(model => model.First().ReducedPrice)
         </th>
         <th></th>
     </tr>
@@ -99,3 +102,4 @@
         }
     }
 </table>
+@Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber, SearchString = Request.QueryString["SearchString"] }))
