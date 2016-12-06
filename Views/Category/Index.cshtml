@@ -14,7 +14,7 @@
 <table class="table">
     <tr>
         <th colspan="2">
-            @using (Html.BeginForm("Index", "Category", FormMethod.Get))    
+            @using (Html.BeginForm("Index", "Category", FormMethod.Get))
             {
                 <p>
                     Search: @Html.TextBox("SearchString")
@@ -57,3 +57,14 @@
     }
 </table>
 @Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber, SearchString = Request.QueryString["SearchString"] }))
+@*Alternative Pager Options
+    @Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber, SearchString = Request.QueryString["SearchString"] }), PagedListRenderOptions.Classic)
+    @Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber, SearchString = Request.QueryString["SearchString"] }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+    @Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber, SearchString = Request.QueryString["SearchString"] }), PagedListRenderOptions.Minimal)
+    @Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber, SearchString = Request.QueryString["SearchString"] }), PagedListRenderOptions.MinimalWithItemCountText)
+    @Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber, SearchString = Request.QueryString["SearchString"] }), PagedListRenderOptions.MinimalWithPageCountText)
+    @Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber, SearchString = Request.QueryString["SearchString"] }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+    @Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber, SearchString = Request.QueryString["SearchString"] }), PagedListRenderOptions.PageNumbersOnly)
+    @Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber, SearchString = Request.QueryString["SearchString"] }), PagedListRenderOptions.TwitterBootstrapPager)
+    @Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber, SearchString = Request.QueryString["SearchString"] }), PagedListRenderOptions.TwitterBootstrapPagerAligned)
+*@

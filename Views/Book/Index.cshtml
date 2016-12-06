@@ -19,7 +19,7 @@
             {
                 <p>
                     Category: @Html.DropDownList("bookCategory", "All")
-                    Search Option: @Html.RadioButton("option", "Name") Name @Html.RadioButton("option", "Author") Author @Html.RadioButton("option", "Publisher") Publisher 
+                    Search Option: @Html.RadioButton("option", "Name") Name @Html.RadioButton("option", "Author") Author @Html.RadioButton("option", "Publisher") Publisher
                     @Html.TextBox("SearchString")
                     <input type="submit" name="submit" value="Search" class="btn btn-default" />
                 </p>
@@ -103,3 +103,14 @@
     }
 </table>
 @Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber, SearchString = Request.QueryString["SearchString"] }))
+@*Alternative Pager Options
+    @Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber, SearchString = Request.QueryString["SearchString"] }), PagedListRenderOptions.Classic)
+    @Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber, SearchString = Request.QueryString["SearchString"] }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+    @Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber, SearchString = Request.QueryString["SearchString"] }), PagedListRenderOptions.Minimal)
+    @Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber, SearchString = Request.QueryString["SearchString"] }), PagedListRenderOptions.MinimalWithItemCountText)
+    @Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber, SearchString = Request.QueryString["SearchString"] }), PagedListRenderOptions.MinimalWithPageCountText)
+    @Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber, SearchString = Request.QueryString["SearchString"] }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+    @Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber, SearchString = Request.QueryString["SearchString"] }), PagedListRenderOptions.PageNumbersOnly)
+    @Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber, SearchString = Request.QueryString["SearchString"] }), PagedListRenderOptions.TwitterBootstrapPager)
+    @Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber, SearchString = Request.QueryString["SearchString"] }), PagedListRenderOptions.TwitterBootstrapPagerAligned)
+*@
