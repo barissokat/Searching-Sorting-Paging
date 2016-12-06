@@ -10,7 +10,7 @@ namespace SearchingSortingPaging.Models
     {
         public int Id { get; set; }
         public int CategoryId { get; set; }
-        [DisplayName("Kitap Adı")]
+        [DisplayName("Book Name")]
         public string Name { get; set; }
         public long ISBN { get; set; }
         public string Author { get; set; }
