@@ -12,11 +12,21 @@ namespace SearchingSortingPaging.Controllers
     {
         private BookContext db = new BookContext();
         // GET: Category
-        public ActionResult Index(string searchString, int? pageNumber)
+        public ActionResult Index(string searchString, int? pageNumber, string sort)
         {
-            var query = db.Categories.AsQueryable();
-            query = query.Where(c => c.Name.Contains(searchString) || searchString == null);
-            return View(query.ToList().ToPagedList(pageNumber ?? 1, 3));
+            var categories = db.Categories.AsQueryable();
+            ViewBag.SortByCategoryName = string.IsNullOrEmpty(sort) ? "Desc Category Name" : "";
+            categories = categories.Where(c => c.Name.Contains(searchString) || searchString == null);
+            switch (sort)
+            {
+                case "Desc Category Name":
+                    categories = categories.OrderByDescending(c => c.Name);
+                    break;
+                default:
+                    categories = categories.OrderBy(c => c.Name);
+                    break;
+            }
+            return View(categories.ToList().ToPagedList(pageNumber ?? 1, 3));
         }
     }
 }
