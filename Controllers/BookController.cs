@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PagedList;
+using SearchingSortingPaging.Models;
 
 namespace SearchingSortingPaging.Controllers
 {
@@ -116,6 +117,29 @@ namespace SearchingSortingPaging.Controllers
                     break;
             }
             return View(books.ToList().ToPagedList(pageNumber ?? 1, 3));
+        }
+        // GET: Book/Create
+        public ActionResult Create()
+        {
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name");
+            return View();
+        }
+        // POST: Book/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Id,CategoryId,Name,ISBN,Author,Publisher,PublicationDate,Price,ReducedPrice")] Book book)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Books.Add(book);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", book.CategoryId);
+            return View(book);
         }
     }
 }
