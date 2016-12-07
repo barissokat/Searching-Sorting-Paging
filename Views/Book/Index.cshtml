@@ -29,28 +29,28 @@
 
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.First().Category.Name)
+            @Html.ActionLink("Category Name", "Index", new { sort = ViewBag.SortByCategoryName, SearchString = Request.QueryString["SearchString"] })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().Name)
+            @Html.ActionLink("Book Name", "Index", new { sort = ViewBag.SortByBookName, SearchString = Request.QueryString["SearchString"] })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.First().ISBN)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().Author)
+            @Html.ActionLink("Author", "Index", new { sort = ViewBag.SortByAuthor, SearchString = Request.QueryString["SearchString"] })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().Publisher)
+            @Html.ActionLink("Publisher", "Index", new { sort = ViewBag.SortByPublisher, SearchString = Request.QueryString["SearchString"] })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().PublicationDate)
+            @Html.ActionLink("Publication Date", "Index", new { sort = ViewBag.SortByPublicationDate, SearchString = Request.QueryString["SearchString"] })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().Price)
+            @Html.ActionLink("Price", "Index", new { sort = ViewBag.SortByPrice, SearchString = Request.QueryString["SearchString"] })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().ReducedPrice)
+            @Html.ActionLink("Reduced Price", "Index", new { sort = ViewBag.SortByReducedPrice, SearchString = Request.QueryString["SearchString"] })
         </th>
         <th></th>
     </tr>
@@ -102,7 +102,7 @@
         }
     }
 </table>
-@Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber, SearchString = Request.QueryString["SearchString"] }))
+@Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber, SearchString = Request.QueryString["SearchString"], sort = Request.QueryString["sort"] }))
 @*Alternative Pager Options
     @Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber, SearchString = Request.QueryString["SearchString"] }), PagedListRenderOptions.Classic)
     @Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber, SearchString = Request.QueryString["SearchString"] }), PagedListRenderOptions.ClassicPlusFirstAndLast)
