@@ -121,7 +121,7 @@ namespace SearchingSortingPaging.Controllers
         // GET: Book/Create
         public ActionResult Create()
         {
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name");
+            ViewBag.CategoryId = new SelectList(db.Categories.OrderBy(c => c.Name), "Id", "Name");
             return View();
         }
         // POST: Book/Create
