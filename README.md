@@ -30,3 +30,11 @@ Bu veritabanı oluşturulurken veritabanı modelleme yaklaşımlarından Code Fi
 Ayrıca bu sınıflar içerisinde, modeller arasındaki ilişkiler üzerinden verilere erişim sağlamak için virtual olarak Category ve Books özellikleri tanımlanmıştır.
 
 ----------
+
+Veritabanı -> Database
+Veri -> Data
+Arama -> Searching
+Sıralama -> Sorting
+Sayfalama -> Paging
+Sınıf -> Class
+Özellik -> Property
