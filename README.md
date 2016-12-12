@@ -13,19 +13,19 @@ Bu projede, oluşturulan basit bir veritabanındaki veriler üzerinde Arama, Sı
 Bu veritabanı oluşturulurken veritabanı modelleme yaklaşımlarından Code First yaklaşımı kullanılmıştır. ASP.NET MVC projelerinde Model sınıfları, Models klasörü içerisinde bulunur. Bu nedenle ilk olarak Models klasörü içerisine aynı zamanda veritabanı tablolarını oluşturacak Book ve Category sınıfları eklenmiştir. Oluşturulan bu sınıflar içerisine istenen özellikler eklenmiş ve modeller oluşturulmuştur.
 
 1. Book
-> - Id
-> - CategoryId
-> - Name
-> - ISBN
-> - Author
-> - Publisher
-> - PublicationDate
-> - Price
-> - ReducedPrice
+ - Id
+ - CategoryId
+ - Name
+ - ISBN
+ - Author
+ - Publisher
+ - PublicationDate
+ - Price
+ - ReducedPrice
 
 2. Category
-> - Id
-> - Name
+ - Id
+ - Name
 
 Ayrıca bu sınıflar içerisinde, modeller arasındaki ilişkiler üzerinden verilere erişim sağlamak için virtual olarak Category ve Books özellikleri tanımlanmıştır.
 
